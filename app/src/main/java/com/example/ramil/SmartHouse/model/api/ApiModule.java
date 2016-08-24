@@ -18,7 +18,6 @@ public final class ApiModule {
     private static final boolean ENABLE_AUTH = true;
     private static final String AUTH_64 = "fsep";
 
-
     public static ApiInterface getApiInterface(String url) {
 
         OkHttpClient httpClient = new OkHttpClient();

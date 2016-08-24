@@ -45,59 +45,41 @@ public class RoomAdapter extends BaseAdapter<Room>{
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v;
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_home_view_u, viewGroup, false);
 
-        if(i == 1) {
-            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_home_view_b, viewGroup, false);
-            View lay = v.findViewById(R.id.image);
+        switch(i){
+            case 1:
+                return inflate(view, R.mipmap.sproom);
+            case 2:
+                return inflate(view, R.mipmap.kit);
+            default:
+                return inflate(view, R.mipmap.van);
 
-            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.sproom);
-
-            Drawable dr = new BitmapDrawable(bitmap);
-
-            lay.setBackground(dr);
-        } else if(i == 2) {
-            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_home_view_u, viewGroup, false);
-
-            View lay = v.findViewById(R.id.image);
-
-            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.kit);
-
-            Drawable dr = new BitmapDrawable(bitmap);
-
-            lay.setBackground(dr);
         }
-        else {
-            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_home_view_u, viewGroup, false);
+    }
 
-            View lay = v.findViewById(R.id.image);
+    private ViewHolder inflate(View view, int id) {
 
-            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.van);
+        View lay = view.findViewById(R.id.image);
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), id);
+        Drawable dr = new BitmapDrawable(bitmap);
+        lay.setBackground(dr);
 
-            Drawable dr = new BitmapDrawable(bitmap);
-
-            lay.setBackground(dr);
-        }
-        ViewHolder pvh = new ViewHolder(v);
-        return pvh;
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(BaseAdapter.ViewHolder ViewHolder, int i) {
 
         ViewHolder.Name.setText(list.get(i).getName());
-        //personViewHolder.personAge.setText(String.valueOf(persons.get(i).age));
-//        personViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
 
         if(i == 0) {
             StaggeredGridLayoutManager.LayoutParams layoutParams =
                     (StaggeredGridLayoutManager.LayoutParams) ViewHolder.itemView.getLayoutParams();
             layoutParams.setFullSpan(true);
-           // personViewHolder.cv.setBackground(R.mipmap.spRoom);
-           // layoutParams.height = context.getResources().getDimensionPixelSize(R.dimen.height);
         }
 
-        ViewHolder.cv.setOnClickListener(view -> myHomeListPresenter.clickRepo(list.get(i).getId()));
+        ViewHolder.cv.setOnClickListener(view -> myHomeListPresenter.startFragmentDevice(list.get(i).getId()));
     }
 
     @Override

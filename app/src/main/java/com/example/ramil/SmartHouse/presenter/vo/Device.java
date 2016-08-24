@@ -1,9 +1,11 @@
 package com.example.ramil.SmartHouse.presenter.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by Ramil on 02.08.2016.
  */
-public class Device {
+public class Device implements Serializable {
 
     private int id;
 

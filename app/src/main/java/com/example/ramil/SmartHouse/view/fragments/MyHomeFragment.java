@@ -12,8 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ramil.SmartHouse.ActivityCallback;
 import com.example.ramil.SmartHouse.R;
+import com.example.ramil.SmartHouse.activity.ActivityCallback;
 import com.example.ramil.SmartHouse.presenter.BasePresenter;
 import com.example.ramil.SmartHouse.presenter.MyHomeListPresenter;
 import com.example.ramil.SmartHouse.presenter.vo.Room;
@@ -73,6 +73,8 @@ public class MyHomeFragment extends BaseFragment implements MyHomeView {
 
         roomAdapterU = new RoomAdapter(new ArrayList<>(),true , getActivity() , myHomeListPresenter);
 
+        myHomeListPresenter.onCreate(savedInstanceState);
+
         myHomeListPresenter.showRoomList();
 
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,
@@ -114,8 +116,14 @@ public class MyHomeFragment extends BaseFragment implements MyHomeView {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        myHomeListPresenter.onSaveInstanceState(outState);
+    }
+
+    @Override
     protected BasePresenter getPresenter() {
-        return null;
+        return myHomeListPresenter;
     }
 
     private void makeToast(String text) {

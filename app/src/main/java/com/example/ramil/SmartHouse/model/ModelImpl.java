@@ -1,5 +1,6 @@
 package com.example.ramil.SmartHouse.model;
 
+import com.example.ramil.SmartHouse.Config;
 import com.example.ramil.SmartHouse.model.api.ApiInterface;
 import com.example.ramil.SmartHouse.model.api.ApiModule;
 import com.example.ramil.SmartHouse.model.dto.DeviceDTO;
@@ -17,7 +18,7 @@ import rx.schedulers.Schedulers;
 public class ModelImpl implements Model {
 
     private final Observable.Transformer schedulersTransformer;
-    ApiInterface apiInterface = ApiModule.getApiInterface("http://stage.ruhim.fsep-lab.ru:8080/ruhim-server/");
+    ApiInterface apiInterface = ApiModule.getApiInterface(Config.ENDPOINT_RELEASE);
 
     public ModelImpl() {
         schedulersTransformer = o -> ((Observable) o).subscribeOn(Schedulers.io())
@@ -53,13 +54,6 @@ public class ModelImpl implements Model {
                 .setLevel(id, dimmer)
                 .compose(applySchedulers());
     }
-
-
-
-
-
-
-
 
     @SuppressWarnings("unchecked")
     private <T> Observable.Transformer<T, T> applySchedulers() {

@@ -29,7 +29,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             Name = (TextView)itemView.findViewById(R.id.person_name);
-            //personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
         }
     }
 }

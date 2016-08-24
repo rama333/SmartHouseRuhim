@@ -3,7 +3,7 @@ apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "com.example.ramil.SmartHouse"
@@ -12,6 +12,23 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/notice.txt'
+
+    }
+
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,10 +42,7 @@ android {
     }
 }
 
-
-
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'io.reactivex:rxandroid:1.2.0'
@@ -41,9 +55,10 @@ dependencies {
     compile 'com.google.dagger:dagger:2.0'
     compile 'com.android.support:cardview-v7:23.0.+'
     compile 'com.android.support:recyclerview-v7:23.0.0'
-    compile files('libs/androidsvg-1.2.1.jar')
-    compile files('libs/svg-android.jar')
-    compile files('libs/androidsvg-1.2.0.jar')
-    compile files('libs/autobahn-0.5.0.jar')
-
+    compile 'org.java-websocket:Java-WebSocket:1.3.0'
+    //compile project(':lib')
+    compile files('libs/jackson-core-asl-1.9.7.jar')
+    compile files('libs/jackson-mapper-asl-1.9.7.jar')
+    compile 'com.github.tavendo:AutobahnAndroid:v0.5.2'
+    compile 'com.github.NaikSoftware:StompProtocolAndroid:1.0.11'
 }

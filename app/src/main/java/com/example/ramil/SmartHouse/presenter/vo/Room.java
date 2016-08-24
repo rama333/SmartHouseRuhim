@@ -1,9 +1,11 @@
 package com.example.ramil.SmartHouse.presenter.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by Ramil on 27.07.2016.
  */
-public class Room {
+public class Room implements Serializable {
 
     private int id;
     private String url;
@@ -38,26 +40,5 @@ public class Room {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Room room = (Room) o;
-
-        if (id != room.id) return false;
-        if (url != null ? !url.equals(room.url) : room.url != null) return false;
-        return !(name != null ? !name.equals(room.name) : room.name != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (url != null ? url.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
     }
 }

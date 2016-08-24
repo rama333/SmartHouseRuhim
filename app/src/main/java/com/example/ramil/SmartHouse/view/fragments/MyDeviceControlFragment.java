@@ -20,26 +20,34 @@ import com.example.ramil.SmartHouse.presenter.vo.Dimmer;
  */
 public class MyDeviceControlFragment extends BaseFragment implements MyDeviceControlView {
 
-    float x,y;
-    float level = 10;
-    float i=0;
-    float b=0;
-    View v;
+    private static final String BUNDLE_DEVICE_CONTROL = "BUNDLE_DEVICE_CONTROL";
+    public static final String DIMMER = "dimmer";
+    private float level = 10;
+    private float i,b = 0;
+    private float y;
+    private View v;
+    int deviceId;
+    Dimmer dimmer;
+    TextView textView;
+
+
+
     MyDeviceControlPresenter myDeviceControlPresenter = new MyDeviceControlPresenter(this);
 
-    public static MyDeviceControlFragment newInstance() {
+    public static MyDeviceControlFragment newInstance(int id) {
         MyDeviceControlFragment myDeviceControlFragment = new MyDeviceControlFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(BUNDLE_DEVICE_CONTROL, id);
+        myDeviceControlFragment.setArguments(args);
 
         return myDeviceControlFragment;
     }
-
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
         try {
             //TODO edit activity
             //activityCallback = (ActivityCallback) activity;
@@ -54,61 +62,53 @@ public class MyDeviceControlFragment extends BaseFragment implements MyDeviceCon
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle  savedInstanceState) {
         View view = layoutInflater.inflate(R.layout.my_device_control, container, false);
 
-        Dimmer dimmer = new Dimmer();
+        Bundle bundle = getArguments();
+        deviceId = bundle.getInt(BUNDLE_DEVICE_CONTROL);
 
-        dimmer.getData().setType("dimmer");
-
+        dimmer = new Dimmer();
+        dimmer.getData().setType(DIMMER);
         v = view;
+        textView = (TextView) view.findViewById(R.id.level);
+        textView.setText(String.valueOf((int)level));
 
-        TextView textView = (TextView) view.findViewById(R.id.level);
-        textView.setText("10");
-
-        view.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-
-                x = event.getX();
-                y = event.getY();
-
-                y = view.getHeight() - event.getY();
-
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        b = y;
-                    case MotionEvent.ACTION_MOVE:
-                        i = level + (y - b);
-                        if (i >= 1000) {
-                            i = 1000;
-                            textView.setText(String.valueOf((int) (i / 10)));
-                        } else if (i <= 0) {
-                            i = 0;
-                            textView.setText(String.valueOf((0)));
-                        } else {
-                            textView.setText(String.valueOf((int) i / 10));
-                        }
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        level = i;
-                        float t = i / 10;
-                        textView.setText(String.valueOf((int) t));
-
-                        dimmer.getData().setBrightValue((int) t);
-                        myDeviceControlPresenter.setLevel(1,dimmer);
-                    default:
-                }
-
-                return true;
-            }
+        view.setOnTouchListener((view1, event) -> { action(event, view1);
+            return true;
         });
-
 
         return view;
     }
 
+    private void action(MotionEvent event, View view1) {
+        y = event.getY();
+        y = view1.getHeight() - event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                b = y;
+            case MotionEvent.ACTION_MOVE:
+                i = level + (y - b);
+                if (i >= 1000) {
+                    i = 1000;
+                    textView.setText(String.valueOf((int) (i / 10)));
+                } else if (i <= 0) {
+                    i = 0;
+                    textView.setText(String.valueOf((0)));
+                } else {
+                    textView.setText(String.valueOf((int) i / 10));
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                level = i;
+                float t = i / 10;
+                textView.setText(String.valueOf((int) t));
+                dimmer.getData().setBrightValue((int) t);
+                myDeviceControlPresenter.setLevel(deviceId, dimmer);
+            default:
+        }
+    }
+
     @Override
     protected BasePresenter getPresenter() {
-        return null;
+        return myDeviceControlPresenter;
     }
 
     @Override

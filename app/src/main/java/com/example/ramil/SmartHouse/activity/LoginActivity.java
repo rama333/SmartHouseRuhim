@@ -1,4 +1,4 @@
-package com.example.ramil.SmartHouse;
+package com.example.ramil.SmartHouse.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.ramil.SmartHouse.R;
 import com.example.ramil.SmartHouse.view.fragments.LoginFragment;
 
 /**
@@ -16,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     private final static String TAG = "TAG1";
 
     private FragmentManager fragmentManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

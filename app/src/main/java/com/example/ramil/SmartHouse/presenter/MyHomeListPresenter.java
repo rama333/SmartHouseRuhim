@@ -1,9 +1,13 @@
 package com.example.ramil.SmartHouse.presenter;
 
+import android.os.Bundle;
+import android.util.Log;
+
 import com.example.ramil.SmartHouse.presenter.mappers.RoomListMapper;
 import com.example.ramil.SmartHouse.presenter.vo.Room;
 import com.example.ramil.SmartHouse.view.fragments.MyHomeView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observer;
@@ -55,10 +59,26 @@ public class MyHomeListPresenter extends BasePresenter {
         addSubscription(subscription);
     }
 
-    public void clickRepo(int id) {
+    public void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            roomList = (List<Room>) savedInstanceState.getSerializable(BUNDLE_MY_HOME_LIST_KEY);
+            Log.d("TAG", "ok state");
+        }
+
+        if(!isRoomListEmpty()) {
+            myHomeView.showList(roomList);
+            Log.d("TAG", "ok list");
+        }
+    }
+    public void startFragmentDevice(int id) {
         myHomeView.startFragmentDevice(id);
     }
 
+    public void onSaveInstanceState(Bundle outState) {
+        if(!isRoomListEmpty()) {
+            Log.d("TAG", roomList.get(0).getName());
+            outState.putSerializable(BUNDLE_MY_HOME_LIST_KEY, new ArrayList<>(roomList));}
+    }
 
-
+    private boolean isRoomListEmpty() { return roomList == null || roomList.isEmpty(); }
 }

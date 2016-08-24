@@ -44,7 +44,7 @@ public class MyDeviceListPresenter extends BasePresenter {
                     @Override
                     public void onNext(List<Device> devices) {
                         if (devices != null && !devices.isEmpty()) {
-                            devicesList = devices;
+                                devicesList = devices;
                                 myDeviceView.showList(devices);
                         }
 
@@ -77,8 +77,9 @@ public class MyDeviceListPresenter extends BasePresenter {
         addSubscription(subscription);
     }
 
-    public void clickRepo() {
-        myDeviceView.startFragmentDeviceControl();
+    public void startFragmentDeviceControl(int id) {
+        myDeviceView.startFragmentDeviceControl(id);
     }
+    public void test(){ myDeviceView.test(devicesList);}
 
 }

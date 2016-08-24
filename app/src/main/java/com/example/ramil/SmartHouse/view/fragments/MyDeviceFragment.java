@@ -5,33 +5,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ramil.SmartHouse.ActivityCallback;
+import com.example.ramil.SmartHouse.activity.ActivityCallback;
 import com.example.ramil.SmartHouse.R;
 import com.example.ramil.SmartHouse.presenter.BasePresenter;
-import com.example.ramil.SmartHouse.presenter.MyDeviceListPresenter;
-import com.example.ramil.SmartHouse.presenter.vo.Device;
-import com.example.ramil.SmartHouse.view.adapters.DeviceAdapter;
 import com.example.ramil.SmartHouse.view.adapters.PagerAdapter;
-
-import java.util.List;
 
 /**
  * Created by Ramil on 01.08.2016.
  */
-public class MyDeviceFragment extends BaseFragment implements MyDeviceView {
-
-
-    private DeviceAdapter deviceAdapter;
-
-    private StaggeredGridLayoutManager staggeredGridLayoutManager;
-
-    private MyDeviceListPresenter myDeviceListPresenter;
+public class MyDeviceFragment extends BaseFragment {
 
     private static final String BUNDLE_DEVICE = "BUNDLE_DEVICE";
 
@@ -107,24 +94,4 @@ public class MyDeviceFragment extends BaseFragment implements MyDeviceView {
         return null;
     }
 
-    @Override
-    public void showList(List<Device> list) {
-
-    }
-
-    @Override
-    public void test(List<Device> list) {
-
-    }
-
-    @Override
-    public void startFragmentDeviceControl() {
-
-    }
-
-
-    @Override
-    public void ShowError(String error) {
-
-    }
 }

@@ -1,9 +1,11 @@
 package com.example.ramil.SmartHouse.presenter.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by Ramil on 27.07.2016.
  */
-public class Dimmer {
+public class Dimmer implements Serializable {
 
     private Data data = new Data(0,true,null);
 

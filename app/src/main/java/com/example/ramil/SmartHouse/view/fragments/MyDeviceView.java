@@ -10,5 +10,5 @@ import java.util.List;
 public interface MyDeviceView extends View {
     void showList(List<Device> list);
     void test(List<Device> list);
-    void startFragmentDeviceControl();
+    void startFragmentDeviceControl(int id);
 }
