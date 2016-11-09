@@ -22,10 +22,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        CardView cv;
-        TextView Name;
+        public CardView cv;
+        public TextView Name;
 
-        ViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             Name = (TextView)itemView.findViewById(R.id.person_name);

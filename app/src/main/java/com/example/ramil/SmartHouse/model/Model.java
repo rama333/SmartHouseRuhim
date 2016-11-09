@@ -15,4 +15,5 @@ public interface Model {
     Observable<DeviceDTO> getDevice(int roomID);
     Observable<OffOnDeviceDTO> setAllBrightValue(int id, int BrightValue);
     Observable<OffOnDeviceDTO> setLevel(int id, Dimmer dimmer);
+    Observable<DeviceDTO> getDeviceRossete(int roomID);
 }

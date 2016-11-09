@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/login">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/ColorRosseteOnOff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/StateRossete"
+            android:id="@+id/textView2"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="24dp"
+            android:textSize="18sp"
+            android:textColor="#8f8e94"/>
+
+        <Switch
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="299dp"
+            android:layout_marginTop="24dp"
+            android:id="@+id/switchRossete" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

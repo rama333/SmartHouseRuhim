@@ -55,6 +55,13 @@ public class ModelImpl implements Model {
                 .compose(applySchedulers());
     }
 
+    @Override
+    public Observable<DeviceDTO> getDeviceRossete(int roomID) {
+        return apiInterface
+                .getDevicesRossete(roomID)
+                .compose(applySchedulers());
+    }
+
     @SuppressWarnings("unchecked")
     private <T> Observable.Transformer<T, T> applySchedulers() {
         return (Observable.Transformer<T, T>) schedulersTransformer;

@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.ramil.SmartHouse.R;
-import com.example.ramil.SmartHouse.view.fragments.LoginFragment;
+import com.example.ramil.SmartHouse.view.fragments.login.LoginFragment;
 
 /**
  * Created by Ramil on 05.08.2016.

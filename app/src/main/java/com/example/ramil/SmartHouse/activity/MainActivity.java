@@ -6,11 +6,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.ramil.SmartHouse.R;
-import com.example.ramil.SmartHouse.view.fragments.MyDeviceControlFragment;
-import com.example.ramil.SmartHouse.view.fragments.MyDeviceFragment;
-import com.example.ramil.SmartHouse.view.fragments.MyHomeFragment;
+import com.example.ramil.SmartHouse.view.fragments.control.RosseteControl;
+import com.example.ramil.SmartHouse.view.fragments.control.LightControl;
+import com.example.ramil.SmartHouse.view.fragments.devices.Devices;
+import com.example.ramil.SmartHouse.view.fragments.rooms.MyHomeFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
         setSupportActionBar(toolbar);
         fragmentManager = getSupportFragmentManager();
 
+
         Fragment fragment = fragmentManager.findFragmentByTag(TAG);
         if (fragment == null) replaceFragment(new MyHomeFragment(), false);
     }
@@ -47,12 +52,40 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
     }
 
     @Override
-    public void startFragmentDevice(int id) {
-        replaceFragment(MyDeviceFragment.newInstance(id), true);
+    public void startFragmentDevice(int id, String name) {
+        replaceFragment(Devices.newInstance(id, name), true);
     }
 
     @Override
-    public void startFragmentDeviceControl(int id) {
-        replaceFragment(MyDeviceControlFragment.newInstance(id), true);
+    public void startFragmentDeviceControl(int id, String name) {
+        replaceFragment(LightControl.newInstance(id, name), true);
     }
+
+    @Override
+    public void startFragmentDeviceRosseteControl(int id, String name) {
+        replaceFragment(RosseteControl.newInstance(id, name), true);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
+            case R.id.setting:
+                Toast.makeText(getApplicationContext(),"ok",Toast.LENGTH_LONG).show();
+                return true;
+
+        }
+            return (super.onOptionsItemSelected(menuItem));
+    }
+
+
 }

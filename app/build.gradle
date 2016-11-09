@@ -55,10 +55,10 @@ dependencies {
     compile 'com.google.dagger:dagger:2.0'
     compile 'com.android.support:cardview-v7:23.0.+'
     compile 'com.android.support:recyclerview-v7:23.0.0'
-    compile 'org.java-websocket:Java-WebSocket:1.3.0'
+    compile group: 'org.java-websocket', name: 'Java-WebSocket', version: '1.3.0'
     //compile project(':lib')
-    compile files('libs/jackson-core-asl-1.9.7.jar')
-    compile files('libs/jackson-mapper-asl-1.9.7.jar')
-    compile 'com.github.tavendo:AutobahnAndroid:v0.5.2'
-    compile 'com.github.NaikSoftware:StompProtocolAndroid:1.0.11'
+    //compile files('libs/jackson-core-asl-1.9.7.jar')
+    //compile files('libs/jackson-mapper-asl-1.9.7.jar')
+    //compile 'com.github.tavendo:AutobahnAndroid:v0.5.2'
+    compile 'com.github.NaikSoftware:StompProtocolAndroid:1.1.1'
 }

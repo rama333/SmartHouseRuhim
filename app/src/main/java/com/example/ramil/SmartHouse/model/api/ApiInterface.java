@@ -19,8 +19,11 @@ public interface ApiInterface {
     @GET("rooms/")
     Observable<RoomsDTO> getRooms();
 
-    @GET("rooms/{room-id}/devices")
+    @GET("rooms/{room-id}/dimmers")
     Observable<DeviceDTO> getDevices(@Path("room-id") int deviceId);
+
+    @GET("rooms/{room-id}/rosettes")
+    Observable<DeviceDTO> getDevicesRossete(@Path("room-id") int deviceId);
 
     @POST("rooms/{room-id}/light")
     Observable<OffOnDeviceDTO> setAllBrightValue(@Path("room-id") int deviceId, @Query("brightValue") int brightValue);
